@@ -1,0 +1,7 @@
+{
+  id: @user.id,
+  username: @user.username,
+  email: @user.email,
+  location: @user.location,
+  temp_location: @user.temp_location,
+}

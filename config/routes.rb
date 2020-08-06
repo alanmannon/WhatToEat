@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   # end
 
   namespace :api do
-    post "/user" => "user#create"
-    get "user/:id" => "user#show"
-    get "/user/:id" => "user#show"
-    patch "/user/:id" => "user#update"
+    post "/user" => "users#create"
+    get "/user/:id" => "users#show"
+    put "/user/:id" => "users#update"
 
     get "/groups" => "groups#index"
+    get "groups/:id" => "groups#show"
   end
 end

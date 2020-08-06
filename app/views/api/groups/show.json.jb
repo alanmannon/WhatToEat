@@ -1,0 +1,4 @@
+{
+  name: @group.name,
+  # restaurant_id: @group.restaurant_id
+}
