@@ -1,0 +1,5 @@
+@groups.map do |group|
+  {
+    name: group.name,
+  }
+end
