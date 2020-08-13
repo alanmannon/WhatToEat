@@ -1,9 +1,16 @@
 class Api::UsersController < ApplicationController
   def create
+    response = HTTP
+      .headers({ "user-key" => "#{Rails.application.credentials.zomato_api[:api_key]}" })
+      .get("https://developers.zomato.com/api/v2.1/cities?q=#{params[:city_name]}")
+
+    parsed = response.parse
+    p parsed["location_suggestions"][0]["id"]
+
     @user = User.new(
       username: params[:username],
       email: params[:email],
-      location: params[:location],
+      location: parsed["location_suggestions"][0]["id"],
       temp_location: params[:temp_location],
       city_name: params[:city_name],
       state_code: params[:state_code],
@@ -17,13 +24,6 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    response = HTTP
-      .headers({ "user-key" => "#{Rails.application.credentials.zomato_api[:api_key]}" })
-      .get("https://developers.zomato.com/api/v2.1/cities?q=moline")
-
-    parsed = response.parse
-    p parsed["location_suggestions"][0]["id"]
-
     @user = User.find(params[:id])
     render "show.json.jb"
   end
