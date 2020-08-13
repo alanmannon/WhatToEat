@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     put "/user/:id" => "users#update"
 
     get "/groups" => "groups#index"
-    get "groups/:id" => "groups#show"
+    get "/groups/:id" => "groups#show"
   end
 end
