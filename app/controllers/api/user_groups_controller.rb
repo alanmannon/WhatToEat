@@ -20,9 +20,9 @@ class Api::UserGroupsController < ApplicationController
   def update
     @user_group = UserGroup.find(params[:id])
     @user_group.update(
-      @user_group.user_id = params[:user_id] || @user_group.user_id,
-      @user_group.group_id = params[:group_id] || @user_group.group_id,
-      @user_group.restaurant_id = params[:restaurant_id] || @user_group.restaurant_id,
+      user_id: @user_group.user_id = params[:user_id] || @user_group.user_id,
+      group_id: @user_group.group_id = params[:group_id] || @user_group.group_id,
+      restaurant_id: @user_group.restaurant_id = params[:restaurant_id] || @user_group.restaurant_id,
     )
     render "show.json.jb"
   end
