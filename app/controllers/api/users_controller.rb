@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
       .get("https://developers.zomato.com/api/v2.1/cities?q=#{params[:city_name]}")
 
     parsed = response.parse
-    p parsed["location_suggestions"][0]["id"]
+    p parsed["location_suggestions"][0]["state_code"]
 
     @user = User.new(
       username: params[:username],
@@ -13,7 +13,7 @@ class Api::UsersController < ApplicationController
       location: parsed["location_suggestions"][0]["id"],
       temp_location: params[:temp_location],
       city_name: params[:city_name],
-      state_code: params[:state_code],
+      state_code: parsed["location_suggestions"][0]["state_code"],
     )
 
     if @user.save

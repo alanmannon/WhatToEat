@@ -4,4 +4,6 @@
   email: @user.email,
   location: @user.location,
   temp_location: @user.temp_location,
+  city_name: @user.city_name,
+  state_code: @user.state_code,
 }

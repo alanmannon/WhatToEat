@@ -17,8 +17,8 @@ class Api::GroupsController < ApplicationController
 
     if @group.save
       render "show.json.jb"
-    else 
-      render json: {error: group.errors }
+    else
+      render json: { error: group.errors }
     end
   end
 end
