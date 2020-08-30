@@ -10,13 +10,14 @@ class Api::UsersController < ApplicationController
     @user = User.new(
       username: params[:username],
       email: params[:email],
+      password: params[:password],
       location: parsed["location_suggestions"][0]["id"],
       temp_location: params[:temp_location],
       city_name: params[:city_name],
       state_code: parsed["location_suggestions"][0]["state_code"],
     )
 
-    if @user.save
+    if @user.save!
       render "show.json.jb"
     else
       render json: { error: @user.errors }
@@ -24,7 +25,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     render "show.json.jb"
   end
 
@@ -35,7 +36,7 @@ class Api::UsersController < ApplicationController
     parsed = response.parse
     p parsed["location_suggestions"][0]["state_code"]
 
-    @user = User.find(params[:id])
+    @user = current_user
     @user.update(
       username: params[:username] || @user.username,
       email: params[:email] || @user.email,
