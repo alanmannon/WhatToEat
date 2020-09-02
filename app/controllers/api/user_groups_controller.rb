@@ -13,7 +13,8 @@ class Api::UserGroupsController < ApplicationController
   end
 
   def show
-    @user_group = UserGroup.find(params[:id])
+    @user_group = UserGroup.where(user_id: current_user)
+    # @user_group = @user_group.where(params[:restaurant_id])
     render "show.json.jb"
   end
 

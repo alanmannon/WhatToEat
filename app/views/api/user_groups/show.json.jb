@@ -1,5 +1,7 @@
-{
-  user_id: @user_group.user_id,
-  group_id: @user_group.group_id,
-  restaurant_id: @user_group.restaurant_id,
-}
+@user_group.each do |user_group|
+  {
+    user_id: user_group.user_id,
+    group_id: user_group.group_id,
+    restaurant_id: user_group.restaurant_id,
+  }
+end

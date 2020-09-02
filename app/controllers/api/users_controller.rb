@@ -24,9 +24,9 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = current_user
-    render "show.json.jb"
+  def index
+    @user = User.find(current_user.id)
+    render "index.json.jb"
   end
 
   def update
@@ -36,7 +36,7 @@ class Api::UsersController < ApplicationController
     parsed = response.parse
     p parsed["location_suggestions"][0]["state_code"]
 
-    @user = current_user
+    @user = User.find(params[:id])
     @user.update(
       username: params[:username] || @user.username,
       email: params[:email] || @user.email,
