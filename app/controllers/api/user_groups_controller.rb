@@ -1,10 +1,12 @@
 class Api::UserGroupsController < ApplicationController
   def create
+    user_id = current_user.id
     @user_group = UserGroup.new(
-      user_id: params[:user_id],
+      user_id: user_id,
       group_id: params[:group_id],
       restaurant_id: params[:restaurant_id],
     )
+    p user_id: params[current_user.id]
     if @user_group.save!
       render "show.json.jb"
     else
