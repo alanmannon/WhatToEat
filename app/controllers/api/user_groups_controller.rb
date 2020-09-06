@@ -1,4 +1,10 @@
 class Api::UserGroupsController < ApplicationController
+  def index
+    user_group_init = UserGroup.where(user_id: current_user)
+    @user_group = user_group_init.where(group_id: params[:group_id])
+    render "index.json.jb"
+  end
+
   def create
     user_id = current_user.id
     @user_group = UserGroup.new(

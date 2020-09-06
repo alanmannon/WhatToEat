@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
     )
 
     if @user.save!
-      render "show.json.jb"
+      render "index.json.jb"
     else
       render json: { error: @user.errors }
     end
