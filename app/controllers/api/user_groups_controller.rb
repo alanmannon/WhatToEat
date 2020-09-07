@@ -10,6 +10,7 @@ class Api::UserGroupsController < ApplicationController
       user_id: user_id,
       group_id: params[:group_id],
       restaurant_id: params[:restaurant_id],
+      restaurant_name: params[:restaurant_name],
     )
     p user_id: params[current_user.id]
     if @user_group.save!

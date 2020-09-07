@@ -1,7 +1,7 @@
 @groups.map do |group|
   {
+    id: group.id,
     name: group.name,
-    # restaurant_id: group.restaurant_id
-
+  # restaurant_id: group.restaurant_id
   }
 end
