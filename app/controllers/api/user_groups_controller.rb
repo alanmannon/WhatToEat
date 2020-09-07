@@ -1,7 +1,6 @@
 class Api::UserGroupsController < ApplicationController
   def index
-    user_group_init = UserGroup.where(user_id: current_user)
-    @user_group = user_group_init.where(group_id: params[:group_id])
+    @user_group = UserGroup.where(user_id: current_user.id, group_id: params[:group_id])
     render "index.json.jb"
   end
 
@@ -21,7 +20,8 @@ class Api::UserGroupsController < ApplicationController
   end
 
   def show
-    @user_group = UserGroup.where(user_id: current_user)
+    @user_group = UserGroup.where(user_id: current_user.id, group_id: params[:group_id]).sample
+    p @user_group
     # @user_group = @user_group.where(params[:restaurant_id])
     render "show.json.jb"
   end
@@ -34,5 +34,11 @@ class Api::UserGroupsController < ApplicationController
       restaurant_id: @user_group.restaurant_id = params[:restaurant_id] || @user_group.restaurant_id,
     )
     render "show.json.jb"
+  end
+
+  def destroy
+    @user_group = UserGroup.find(params[:id])
+    @user_group.destroy
+    render json: { message: "Delete Successful" }
   end
 end

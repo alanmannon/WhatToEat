@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     post "/usergroup" => "user_groups#create"
     get "/usergroup/:id" => "user_groups#show"
     put "/usergroup/:id" => "user_groups#update"
+    delete "/usergroup/:id" => "user_groups#destroy"
 
     get "/zomato" => "zomato#index"
   end
